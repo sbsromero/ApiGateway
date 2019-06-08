@@ -1,0 +1,33 @@
+server:
+  port: 8000
+  
+zuul:
+  ignoredServices: '*'
+  prefix: /api
+  routes:
+    
+    organizaciones:
+      path: /organizaciones/**
+      serviceId: organizacion
+      strip-prefix: false
+
+    departamentos:
+      path: /departamentos/**
+      serviceId: departamento
+      strip-prefix: false
+    
+    empleados:
+      path: /empleados/**
+      serviceId: empleado
+      strip-prefix: false
+      
+endpoints:
+  routes:
+    sensitive: false
+  trace:
+    sensitive: false 
+    
+eureka:
+  client:
+    service-url:
+      default-zone: http://localhost:8761/eureka
